@@ -1,0 +1,3 @@
+[submodule "classes/system"]
+	path = classes/system
+	url = git@github.com:LotharKAtt/reclass-system-salt-model.git
