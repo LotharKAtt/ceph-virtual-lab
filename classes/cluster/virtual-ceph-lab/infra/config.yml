@@ -1,11 +1,10 @@
 classes:
 - system.linux.system.repo.ubuntu
-- system.openssh.client.lab
 - system.salt.master.pkg
 - system.salt.minion.ca.salt_master
 - system.salt.master.api
 - system.reclass.storage.salt
-- system.reclass.storage.system.cephicek
+- system.reclass.storage.system.ceph_monitoring_cluster
 - cluster.virtual-ceph-lab.infra
 parameters:
   _param:
@@ -20,30 +19,39 @@ parameters:
   reclass:
     storage:
       node:
-        ceph_monitorng_node01:
-          name: ${_param:ceph_monitorng_node01}
+        ceph_osd_node01:
+          name: ${_param:ceph_osd_node01}
           domain: ${_param:cluster_domain}
           classes:
-          - cluster.${_param:cluster_name}.ceph.monitoring
+          - cluster.${_param:cluster_name}.ceph.osd
           params:
             salt_master_host: ${_param:infra_config_deploy_address}
             linux_system_codename: xenial
-            single_address: ${_param:ceph_monitorng_node01_address}
-        ceph_monitorng_node02:
-          name: ${_param:ceph_monitorng_node01}
+            single_address: ${_param:ceph_osd_node01_address}
+        ceph_osd_node02:
+          name: ${_param:ceph_osd_node01}
           domain: ${_param:cluster_domain}
           classes:
-          - cluster.${_param:cluster_name}.ceph.monitoring
+          - cluster.${_param:cluster_name}.ceph.osd
           params:
             salt_master_host: ${_param:infra_config_deploy_address}
             linux_system_codename: xenial
-            single_address: ${_param:ceph_monitorng_node01_address}
-        ceph_monitorng_node03:
-          name: ${_param:ceph_monitorng_node01}
+            single_address: ${_param:ceph_osd_node01_address}
+        ceph_osd_node03:
+          name: ${_param:ceph_cfs_node01}
           domain: ${_param:cluster_domain}
           classes:
-          - cluster.${_param:cluster_name}.ceph.monitoring
+          - cluster.${_param:cluster_name}.ceph.osd
           params:
             salt_master_host: ${_param:infra_config_deploy_address}
             linux_system_codename: xenial
-            single_address: ${_param:ceph_monitorng_node01_address}
+            single_address: ${_param:ceph_osd_node01_address}
+        ceph_cfs_node01:
+          name: ${_param:ceph_cfs_node01}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.ceph.cfs
+          params:
+            salt_master_host: ${_param:infra_config_deploy_address}
+            linux_system_codename: xenial
+            single_address: ${_param:ceph_cfs_node01_address}
