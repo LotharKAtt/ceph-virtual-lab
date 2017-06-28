@@ -1,5 +1,6 @@
 classes:
 - system.linux.system.repo.ubuntu
+- service.keepalived.cluster.single
 - cluster.virtual-ceph-lab.ceph
 parameters:
   _param:
@@ -14,8 +15,8 @@ parameters:
     cluster_node02_address: ${_param:ceph_monitor_node02_address}
     cluster_node03_hostname: cmn03
     cluster_node03_address: ${_param:ceph_monitor_node03_address}
-  linux:
-    network:
-      interface:
-        ens3: ${_param:linux_single_interface}
+#  linux:
+#    network:
+#      interface:
+#        ens3: ${_param:linux_single_interface}
 
