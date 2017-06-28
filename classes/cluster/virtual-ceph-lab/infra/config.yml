@@ -4,7 +4,7 @@ classes:
 - system.salt.minion.ca.salt_master
 - system.salt.master.api
 - system.reclass.storage.salt
-- system.reclass.storage.system.ceph_monitoring_cluster
+- system.reclass.storage.system.ceph_monitor_cluster
 - cluster.virtual-ceph-lab.infra
 parameters:
   _param:
