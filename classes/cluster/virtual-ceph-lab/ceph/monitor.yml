@@ -1,0 +1,21 @@
+classes:
+- system.linux.system.repo.ubuntu
+- cluster.virtual-ceph-lab.ceph
+parameters:
+  _param:
+    keepalived_ceph_monitor_vip_address: ${_param:ceph_monitor_address}
+    keepalived_ceph_monitor_vip_password: ${_param:ceph_monitor_keepalived_password}
+    keepalived_ceph_monitor_vip_interface: ens3
+    cluster_vip_address: ${_param:ceph_monitor_address}
+    cluster_local_address: ${_param:single_address}
+    cluster_node01_hostname: cmn01
+    cluster_node01_address: ${_param:ceph_monitor_node01_address}
+    cluster_node02_hostname: cmn02
+    cluster_node02_address: ${_param:ceph_monitor_node02_address}
+    cluster_node03_hostname: cmn03
+    cluster_node03_address: ${_param:ceph_monitor_node03_address}
+  linux:
+    network:
+      interface:
+        ens3: ${_param:linux_single_interface}
+

@@ -5,6 +5,7 @@ classes:
 - system.salt.master.api
 - system.reclass.storage.salt
 - system.reclass.storage.system.ceph_monitor_cluster
+- cluster.virtual-ceph-lab.ceph
 - cluster.virtual-ceph-lab.infra
 parameters:
   _param:
@@ -20,7 +21,7 @@ parameters:
     storage:
       node:
         ceph_osd_node01:
-          name: ${_param:ceph_osd_node01}
+          name: ${_param:ceph_osd_node01_hostname}
           domain: ${_param:cluster_domain}
           classes:
           - cluster.${_param:cluster_name}.ceph.osd
@@ -29,29 +30,43 @@ parameters:
             linux_system_codename: xenial
             single_address: ${_param:ceph_osd_node01_address}
         ceph_osd_node02:
-          name: ${_param:ceph_osd_node01}
+          name: ${_param:ceph_osd_node02_hostname}
           domain: ${_param:cluster_domain}
           classes:
           - cluster.${_param:cluster_name}.ceph.osd
           params:
             salt_master_host: ${_param:infra_config_deploy_address}
             linux_system_codename: xenial
-            single_address: ${_param:ceph_osd_node01_address}
+            single_address: ${_param:ceph_osd_node02_address}
         ceph_osd_node03:
-          name: ${_param:ceph_cfs_node01}
+          name: ${_param:ceph_osd_node03_hostname}
           domain: ${_param:cluster_domain}
           classes:
           - cluster.${_param:cluster_name}.ceph.osd
           params:
             salt_master_host: ${_param:infra_config_deploy_address}
             linux_system_codename: xenial
-            single_address: ${_param:ceph_osd_node01_address}
+            single_address: ${_param:ceph_osd_node03_address}
         ceph_cfs_node01:
-          name: ${_param:ceph_cfs_node01}
+          name: cfs01 #${_param:ceph_cfs_node01_hostname} #todo
           domain: ${_param:cluster_domain}
           classes:
-          - cluster.${_param:cluster_name}.ceph.cfs
+#          - cluster.${_param:cluster_name}.ceph.cfs
           params:
             salt_master_host: ${_param:infra_config_deploy_address}
             linux_system_codename: xenial
-            single_address: ${_param:ceph_cfs_node01_address}
+            single_address: 1.2.3.4 #${_param:ceph_cfs_node01_address}
+
+        ceph_monitor_node01:
+          params:
+            linux_system_codename: xenial
+            keepalived_vip_priority: 100
+        ceph_monitor_node02:
+          params:
+            linux_system_codename: xenial
+            keepalived_vip_priority: 101
+        ceph_monitor_node03:
+          params:
+            linux_system_codename: xenial
+            keepalived_vip_priority: 102
+

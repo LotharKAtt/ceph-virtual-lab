@@ -1,0 +1,6 @@
+parameters:
+  _param:
+    ceph_monitor_address: 172.16.10.50
+    ceph_monitor_node01_address: 172.16.10.51
+    ceph_monitor_node02_address: 172.16.10.52
+    ceph_monitor_node03_address: 172.16.10.53

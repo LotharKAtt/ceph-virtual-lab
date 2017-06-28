@@ -14,6 +14,15 @@ parameters:
     cluster_domain: virtual-ceph-lab.local
     cluster_name: virtual-ceph-lab
     apt_mk_version: nightly
+
+    ceph_osd_node01_hostname: osd01
+    ceph_osd_node02_hostname: osd02
+    ceph_osd_node03_hostname: osd03
+
+    ceph_osd_node01_address: 172.16.10.101
+    ceph_osd_node02_address: 172.16.10.102
+    ceph_osd_node03_address: 172.16.10.103
+
   linux:
     network:
       resolv:
