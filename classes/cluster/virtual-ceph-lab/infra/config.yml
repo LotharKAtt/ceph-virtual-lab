@@ -42,29 +42,38 @@ parameters:
             infra_config_deploy_address:
               value_template: <<node_ip>>
         ceph_osd_node01:
-          expression: <<node_hostname>>__equals__osd01
+          expression: <<node_hostname>>__equals__osd0
           cluster_param:
             ceph_osd_node01_address:
               value_template: <<node_ip>>
+          node_class:
+            value_template:
+              - cluster.<node_cluster>.ceph.osd
         ceph_osd_node02:
-          expression: <<node_hostname>>__equals__osd02
+          expression: <<node_hostname>>__equals__osd1
           cluster_param:
             ceph_osd_node02_address:
               value_template: <<node_ip>>
+          node_class:
+            value_template:
+              - cluster.<node_cluster>.ceph.osd
         ceph_osd_node03:
-          expression: <<node_hostname>>__equals__osd03
+          expression: <<node_hostname>>__equals__osd2
           cluster_param:
             ceph_osd_node03_address:
               value_template: <<node_ip>>
+          node_class:
+            value_template:
+              - cluster.<node_cluster>.ceph.osd
+#        ceph_cfs_node03:
+#          expression: <<node_hostname>>__equals__osd03
+#          cluster_param:
+#            ceph_osd_node03_address:
+#              value_template: <<node_ip>>
+#          node_class:
+#            value_template:
+#              - cluster.<node_cluster>.ceph.osd
 #        ceph_cfs_node01:
-#          name: cfs01 #${_param:ceph_cfs_node01_hostname} #todo
-#          domain: ${_param:cluster_domain}
-#          classes:
-#          - cluster.${_param:cluster_name}.ceph.cfs
-#          params:
-#            salt_master_host: ${_param:infra_config_deploy_address}
-#            linux_system_codename: xenial
-#            single_address: 1.2.3.4 #${_param:ceph_cfs_node01_address}
         ceph_monitor_node01:
           params:
             linux_system_codename: xenial
