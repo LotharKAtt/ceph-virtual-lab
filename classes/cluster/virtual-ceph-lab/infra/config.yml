@@ -73,17 +73,15 @@ parameters:
         node_class:
           value_template:
             - cluster.<<node_cluster>>.ceph.cfs
-
       ceph_monitor_node01:
           params:
             linux_system_codename: xenial
             keepalived_vip_priority: 100
-        ceph_monitor_node02:
+      ceph_monitor_node02:
           params:
             linux_system_codename: xenial
             keepalived_vip_priority: 101
-        ceph_monitor_node03:
+      ceph_monitor_node03:
           params:
             linux_system_codename: xenial
             keepalived_vip_priority: 102
-
