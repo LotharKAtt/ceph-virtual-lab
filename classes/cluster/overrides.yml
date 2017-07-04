@@ -1,0 +1,7 @@
+parameters:
+  _param:
+    ceph_osd_node01_address: 172.16.10.95
+    ceph_osd_node02_address: 172.16.10.94
+    ceph_osd_node03_address: 172.16.10.96
+    infra_config_address: 172.16.10.90
+    infra_config_deploy_address: 172.16.10.90
