@@ -4,6 +4,7 @@ classes:
 - system.linux.system.repo.mcp.salt #FIXME
 - system.openssh.server.team.tcpcloud
 - cluster.virtual-ceph-lab.ceph
+- cluster.overrides
 parameters:
   _param:
     # infra service addresses
