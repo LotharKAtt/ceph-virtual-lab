@@ -47,16 +47,15 @@ parameters:
             salt_master_host: ${_param:infra_config_deploy_address}
             linux_system_codename: xenial
             single_address: ${_param:ceph_osd_node03_address}
-#        ceph_cfs_node01:
-#          name: cfs01 #${_param:ceph_cfs_node01_hostname} #todo
-#          domain: ${_param:cluster_domain}
-#          classes:
-#          - cluster.${_param:cluster_name}.ceph.cfs
-#          params:
-#            salt_master_host: ${_param:infra_config_deploy_address}
-#            linux_system_codename: xenial
-#            single_address: 1.2.3.4 #${_param:ceph_cfs_node01_address}
-
+        ceph_cfs_node01:
+          name: ${_param:ceph_cfs_node01_hostname}
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.ceph.cfs
+          params:
+            salt_master_host: ${_param:infra_config_deploy_address}
+            linux_system_codename: xenial
+            single_address: ${_param:ceph_cfs_node01_address}
         ceph_monitor_node01:
           params:
             linux_system_codename: xenial
