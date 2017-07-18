@@ -4,6 +4,7 @@ classes:
 - system.linux.system.repo.mcp.salt #FIXME
 - system.openssh.server.team.tcpcloud
 - cluster.virtual-ceph-lab.ceph
+- cluster.overrides
 parameters:
   _param:
     # infra service addresses
@@ -15,13 +16,17 @@ parameters:
     cluster_name: virtual-ceph-lab
     apt_mk_version: nightly
 
-    ceph_osd_node01_hostname: osd01
-    ceph_osd_node02_hostname: osd02
-    ceph_osd_node03_hostname: osd03
-
-    ceph_osd_node01_address: 172.16.10.101
-    ceph_osd_node02_address: 172.16.10.102
-    ceph_osd_node03_address: 172.16.10.103
+#    ceph_osd_node01_hostname: osd01
+#    ceph_osd_node02_hostname: osd02
+#    ceph_osd_node03_hostname: osd03
+#
+#    ceph_osd_node01_address: 172.16.10.94
+#    ceph_osd_node02_address: 172.16.10.95
+#    ceph_osd_node03_address: 172.16.10.96
+#
+#
+#    ceph_cfs_node01_hostname: cfs01
+#    ceph_cfs_node01_address: 172.16.10.97
 
   linux:
     network:
