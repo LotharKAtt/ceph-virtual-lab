@@ -1,0 +1,4 @@
+classes:
+- cluster.ceph-virtual-lab.ceph
+- cluster.ceph-virtual-lab.infra
+- cluster.overrides

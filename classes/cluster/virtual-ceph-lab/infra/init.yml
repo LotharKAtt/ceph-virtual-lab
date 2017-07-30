@@ -2,38 +2,24 @@ classes:
 - system.linux.system.single
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.mcp.salt #FIXME
+- system.linux.system.repo.saltstack.xenial
+- system.linux.system.repo.ubuntu
 - system.openssh.server.team.tcpcloud
 - cluster.virtual-ceph-lab.ceph
-- cluster.overrides
 parameters:
   _param:
+    salt_version: 2017.7
     # infra service addresses
     infra_config_hostname: cfg01
-    infra_config_address: 172.16.10.90
-    infra_config_deploy_address: 192.168.10.90
+    infra_config_address: 172.16.10.100
+    infra_config_deploy_address: 192.168.10.100
 
     cluster_domain: virtual-ceph-lab.local
     cluster_name: virtual-ceph-lab
     apt_mk_version: nightly
-
-#    ceph_osd_node01_hostname: osd01
-#    ceph_osd_node02_hostname: osd02
-#    ceph_osd_node03_hostname: osd03
-#
-#    ceph_osd_node01_address: 172.16.10.94
-#    ceph_osd_node02_address: 172.16.10.95
-#    ceph_osd_node03_address: 172.16.10.96
-#
-#
-#    ceph_cfs_node01_hostname: cfs01
-#    ceph_cfs_node01_address: 172.16.10.97
-
+    primary_interface: ens3
   linux:
     network:
-      resolv:
-        dns:
-          - 172.18.176.4
-          - 172.18.176.7
       host:
         cfg01:
           address: ${_param:infra_config_address}
@@ -41,12 +27,14 @@ parameters:
           - ${_param:infra_config_hostname}
           - ${_param:infra_config_hostname}.${_param:cluster_domain}
       interface:
-        ens4:
+        primary_interface:
           enabled: true
           type: eth
-          proto: static
-          address: ${_param:single_address}
-          netmask: 255.255.255.0
+          proto: dhcp
+          #proto: static
+          #name: ${_param:primary_interface}
+          #address: ${_param:single_address}
+          #netmask: 255.255.255.0
     system:
       name: ${_param:infra_config_hostname}
       domain: ${_param:cluster_domain}
