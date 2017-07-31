@@ -71,3 +71,6 @@ parameters:
           cluster_param:
             ceph_cfs_01_address:
               value_template: <<node_control_ip>>
+          node_class:
+            value_template:
+              - cluster.<<node_cluster>>.ceph.cfs
