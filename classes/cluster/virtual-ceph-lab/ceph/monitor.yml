@@ -3,7 +3,7 @@ classes:
 - system.linux.system.repo.ceph
 - service.keepalived.cluster.single
 - cluster.virtual-ceph-lab.infra
-#parameters:
+parameters:
   _param:
     keepalived_ceph_monitor_vip_address: ${_param:ceph_monitor_address}
     keepalived_ceph_monitor_vip_password: ${_param:ceph_monitor_keepalived_password}
