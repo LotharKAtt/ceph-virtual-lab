@@ -5,6 +5,7 @@ classes:
 - system.salt.minion.ca.salt_master
 - system.salt.master.api
 - system.reclass.storage.salt
+- system.reclass.storage.system.ceph_monitor_cluster
 - cluster.virtual-ceph-lab.ceph
 - cluster.virtual-ceph-lab.infra
 parameters:
@@ -47,40 +48,26 @@ parameters:
               value_template: <<node_domain>>
         ceph_osd:
           expression: <<node_hostname>>__equals__osd
-          cluster_param:
-            ceph_osd_node01_address:
-              value_template: <<node_osd_ip>>
-          value_template:
-            - cluster.<<node_cluster>>.ceph.osd
+          node_class:
+            value_template:
+              - cluster.<<node_cluster>>.ceph.osd
         ceph_monitor_01:
           expression: <<node_hostname>>__equals__cmn01
           cluster_param:
             ceph_monitor_01_address:
               value_template: <<node_control_ip>>
-          value_template:
-            - cluster.<<node_cluster>>.ceph.monitor
         ceph_monitor_02:
           expression: <<node_hostname>>__equals__cmn02
           cluster_param:
             ceph_monitor_02_address:
               value_template: <<node_control_ip>>
-          value_template:
-            - cluster.<<node_cluster>>.ceph.monitor
         ceph_monitor_03:
           expression: <<node_hostname>>__equals__cmn03
           cluster_param:
             ceph_monitor_03_address:
               value_template: <<node_control_ip>>
-          value_template:
-            - cluster.<<node_cluster>>.ceph.monitor
-              #
-              #
-              #        ceph_cfs_node01:
-              #          name: ${_param:ceph_cfs_node01_hostname}
-              #          domain: ${_param:cluster_domain}
-              #          classes:
-              #          - cluster.${_param:cluster_name}.ceph.cfs
-              #          params:
-              #            salt_master_host: ${_param:infra_config_deploy_address}
-              #            linux_system_codename: xenial
-              #            single_address: ${_param:ceph_cfs_node01_address}
+        ceph_cfs_01:
+          expression: <<node_hostname>>__equals__cfs01
+          cluster_param:
+            ceph_cfs_01_address:
+              value_template: <<node_control_ip>>
