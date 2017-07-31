@@ -47,7 +47,7 @@ parameters:
             cluster_domain:
               value_template: <<node_domain>>
         ceph_osd:
-          expression: <<node_hostname>>__equals__osd
+          expression: <<node_hostname>>__startswith__osd
           node_class:
             value_template:
               - cluster.<<node_cluster>>.ceph.osd

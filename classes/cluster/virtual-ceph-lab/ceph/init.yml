@@ -21,68 +21,54 @@ parameters:
     ceph_osd_node02_hostname: osd02
     ceph_osd_node03_hostname: osd03
 
-    ceph_osd_node01_address: 172.16.10.105
-    ceph_osd_node02_address: 172.16.10.106
-    ceph_osd_node03_address: 172.16.10.107
+    ceph_osd_node01_address: 172.16.10.94
+    ceph_osd_node02_address: 172.16.10.95
+    ceph_osd_node03_address: 172.16.10.96
 
 
-    #    ceph_cfs_node01_hostname: cfs01
-    #    ceph_cfs_node01_address: 172.16.10.97
-#  linux:
-#    network:
-#      host:
-#        cmn:
-#          address: ${_param:ceph_monitor_address}
-#          names:
-#          - ${_param:ceph_monitor_hostname}
-#          - ${_param:ceph_monitor_hostname}.${_param:cluster_domain}
-#        cmn01:
-#          address: ${_param:ceph_monitor_node01_address}
-#          names:
-#          - ${_param:ceph_monitor_node01_hostname}
-#          - ${_param:ceph_monitor_node01_hostname}.${_param:cluster_domain}
-#        cmn02:
-#          address: ${_param:ceph_monitor_node02_address}
-#          names:
-#          - ${_param:ceph_monitor_node02_hostname}
-#          - ${_param:ceph_monitor_node02_hostname}.${_param:cluster_domain}
-#        cmn03:
-#          address: ${_param:ceph_monitor_node03_address}
-#          names:
-#          - ${_param:ceph_monitor_node03_hostname}
-#          - ${_param:ceph_monitor_node03_hostname}.${_param:cluster_domain}
-#        osd01:
-#          address: ${_param:ceph_osd_node01_address}
-#          names:
-#          - ${_param:ceph_osd_node01_hostname}
-#          - ${_param:ceph_osd_node01_hostname}.${_param:cluster_domain}
-#        osd02:
-#          address: ${_param:ceph_osd_node02_address}
-#          names:
-#          - ${_param:ceph_osd_node02_hostname}
-#          - ${_param:ceph_osd_node02_hostname}.${_param:cluster_domain}
-#        osd03:
-#          address: ${_param:ceph_osd_node03_address}
-#          names:
-#          - ${_param:ceph_osd_node03_hostname}
-#          - ${_param:ceph_osd_node03_hostname}.${_param:cluster_domain}
-#            #        cfs01:
-#            #          address: ${_param:ceph_cfs_node01_address}
-#            #          names:
-#            #          - ${_param:ceph_cfs_node01_hostname}
-#            #          - ${_param:ceph_cfs_node01_hostname}.${_param:cluster_domain}
-#            #
-    system:
-      rc:
-        local: |
-          #!/bin/sh -e
-          #
-          # rc.local
-          #
-          ######### this file is managed by salt! ##########
-          # this script is executed at the end of each multiuser runlevel.
-          # make sure that the script will "exit 0" on success or any other
-          # value on error.
-          #
-          ip r a 10.254.0.0/16 dev ens3
-          exit 0
+    ceph_cfs_node01_hostname: cfs01
+    ceph_cfs_node01_address: 172.16.10.110
+  linux:
+    network:
+      host:
+        cmn:
+          address: ${_param:ceph_monitor_address}
+          names:
+          - ${_param:ceph_monitor_hostname}
+          - ${_param:ceph_monitor_hostname}.${_param:cluster_domain}
+        cmn01:
+          address: ${_param:ceph_monitor_node01_address}
+          names:
+          - ${_param:ceph_monitor_node01_hostname}
+          - ${_param:ceph_monitor_node01_hostname}.${_param:cluster_domain}
+        cmn02:
+          address: ${_param:ceph_monitor_node02_address}
+          names:
+          - ${_param:ceph_monitor_node02_hostname}
+          - ${_param:ceph_monitor_node02_hostname}.${_param:cluster_domain}
+        cmn03:
+          address: ${_param:ceph_monitor_node03_address}
+          names:
+          - ${_param:ceph_monitor_node03_hostname}
+          - ${_param:ceph_monitor_node03_hostname}.${_param:cluster_domain}
+        osd01:
+          address: ${_param:ceph_osd_node01_address}
+          names:
+          - ${_param:ceph_osd_node01_hostname}
+          - ${_param:ceph_osd_node01_hostname}.${_param:cluster_domain}
+        osd02:
+          address: ${_param:ceph_osd_node02_address}
+          names:
+          - ${_param:ceph_osd_node02_hostname}
+          - ${_param:ceph_osd_node02_hostname}.${_param:cluster_domain}
+        osd03:
+          address: ${_param:ceph_osd_node03_address}
+          names:
+          - ${_param:ceph_osd_node03_hostname}
+          - ${_param:ceph_osd_node03_hostname}.${_param:cluster_domain}
+        cfs01:
+          address: ${_param:ceph_cfs_node01_address}
+          names:
+          - ${_param:ceph_cfs_node01_hostname}
+          - ${_param:ceph_cfs_node01_hostname}.${_param:cluster_domain}
+
