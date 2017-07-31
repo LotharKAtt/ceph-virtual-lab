@@ -6,6 +6,7 @@ classes:
 - system.linux.system.repo.ubuntu
 - system.openssh.server.team.tcpcloud
 - cluster.virtual-ceph-lab.ceph
+- cluster.overrides
 parameters:
   _param:
     salt_version: 2017.7
