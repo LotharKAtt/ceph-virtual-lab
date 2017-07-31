@@ -1,6 +1,7 @@
 classes:
 - system.linux.system.repo.ubuntu
-- system.salt.master.git
+- system.salt.master.pkg
+  #- system.salt.master.git
 - system.salt.minion.ca.salt_master
 - system.salt.master.api
 - system.reclass.storage.salt
@@ -9,14 +10,16 @@ classes:
 - cluster.virtual-ceph-lab.infra
 parameters:
   _param:
-    salt_master_base_environment: dev
+    salt_master_base_environment: prd
     reclass_data_repository: "https://github.com/LotharKAtt/ceph-virtual-lab.git"
+#    salt_master_environment_revision: master
+#    salt_master_environment_repository: "https://github.com/salt-formulas"
     reclass_data_revision: master
     reclass_config_master: ${_param:infra_config_deploy_address}
     single_address: ${_param:infra_config_address}
     linux_system_codename: xenial
     salt_api_password_hash: "$6$WV0P1shnoDh2gI/Z$22/Bcd7ffMv0jDlFpT63cAU4PiXHz9pjXwngToKwqAsgoeK4HNR3PiKaushjxp3JsQ8hNoJmAC6TxzVqfV8WH/"
-    salt_master_host: ${_param:infra_config_deploy_address}
+    salt_master_host: 127.0.0.1
   salt:
     master:
       reactor:
@@ -43,49 +46,28 @@ parameters:
               value_template: <<node_deploy_ip>>
             cluster_domain:
               value_template: <<node_domain>>
-        ceph_osd_node01:
-          expression: <<node_hostname>>__equals__osd0
+        ceph_osd:
+          expression: <<node_hostname>>__equals__osd
+          node_class:
+            value_template:
+              - cluster.<<node_cluster>>.ceph.osd
+        ceph_monitor_01:
+          expression: <<node_hostname>>__equals__cmn01
           cluster_param:
-            ceph_osd_node01_address:
-              value_template: <<node_osd_ip>>
-          value_template:
-            - cluster.<<node_cluster>>.ceph.osd
-        ceph_osd_node02:
-          name: ${_param:ceph_osd_node02_hostname}
-          domain: ${_param:cluster_domain}
-          classes:
-          - cluster.${_param:cluster_name}.ceph.osd
-          params:
-            salt_master_host: ${_param:infra_config_deploy_address}
-            linux_system_codename: xenial
-            single_address: ${_param:ceph_osd_node02_address}
-        ceph_osd_node03:
-          name: ${_param:ceph_osd_node03_hostname}
-          domain: ${_param:cluster_domain}
-          classes:
-          - cluster.${_param:cluster_name}.ceph.osd
-          params:
-            salt_master_host: ${_param:infra_config_deploy_address}
-            linux_system_codename: xenial
-            single_address: ${_param:ceph_osd_node03_address}
-        ceph_cfs_node01:
-          name: ${_param:ceph_cfs_node01_hostname}
-          domain: ${_param:cluster_domain}
-          classes:
-          - cluster.${_param:cluster_name}.ceph.cfs
-          params:
-            salt_master_host: ${_param:infra_config_deploy_address}
-            linux_system_codename: xenial
-            single_address: ${_param:ceph_cfs_node01_address}
-        ceph_monitor_node01:
-          params:
-            linux_system_codename: xenial
-            keepalived_vip_priority: 100
-        ceph_monitor_node02:
-          params:
-            linux_system_codename: xenial
-            keepalived_vip_priority: 101
-        ceph_monitor_node03:
-          params:
-            linux_system_codename: xenial
-            keepalived_vip_priority: 102
+            ceph_monitor_01_address:
+              value_template: <<node_control_ip>>
+        ceph_monitor_02:
+          expression: <<node_hostname>>__equals__cmn02
+          cluster_param:
+            ceph_monitor_02_address:
+              value_template: <<node_control_ip>>
+        ceph_monitor_03:
+          expression: <<node_hostname>>__equals__cmn03
+          cluster_param:
+            ceph_monitor_03_address:
+              value_template: <<node_control_ip>>
+        ceph_cfs_01:
+          expression: <<node_hostname>>__equals__cfs01
+          cluster_param:
+            ceph_cfs_01_address:
+              value_template: <<node_control_ip>>
