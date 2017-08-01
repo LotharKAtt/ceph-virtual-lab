@@ -4,7 +4,6 @@ parameters:
     ceph_monitor_keepalived_password: tv0jeM4m4neum1s0p3nSt4cK3m
 
 
-
     ceph_monitor_hostname: cmn
     ceph_monitor_node01_hostname: cmn01
     ceph_monitor_node02_hostname: cmn02
