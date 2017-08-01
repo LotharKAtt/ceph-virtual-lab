@@ -1,5 +1,6 @@
 parameters:
   _param:
+    linux_repo_ceph_component: kraken
     ceph_monitor_keepalived_password: tv0jeM4m4neum1s0p3nSt4cK3m
 
 

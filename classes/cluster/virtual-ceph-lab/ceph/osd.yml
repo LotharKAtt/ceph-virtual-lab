@@ -1,4 +1,4 @@
 classes:
 - system.linux.system.repo.ceph
 - system.linux.system.repo.ubuntu
-- cluster.virtual-ceph-lab.ceph
+- cluster.virtual-ceph-lab.infra
