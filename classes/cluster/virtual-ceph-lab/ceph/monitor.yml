@@ -2,7 +2,7 @@ classes:
 - system.linux.system.repo.ubuntu
 - system.linux.system.repo.ceph
 - service.keepalived.cluster.single
-  #- service.ceph.monitor
+#- service.ceph.monitor.cluster
 - cluster.virtual-ceph-lab.infra
 parameters:
   _param:
@@ -23,16 +23,19 @@ parameters:
     cinder_storage_keyring: cinderkeyrinig
   ceph:
     monitor:
+      bind:
+        address: ${_param:single_address}
+      version: kraken
       fsid: a619c5fc-c4ed-4f22-9ed2-66cf2feca23d
       public_network: 10.1.0.0/24
       cluster_network: 10.16.0.0/24
       members:
-      - name: ${_param:cluster_node01_hostname}
-        host: ${_param:cluster_node01_address}
-      - name: ${_param:cluster_node02_hostname}
-        host: ${_param:cluster_node02_address}
-      - name: ${_param:cluster_node03_hostname}
-        host: ${_param:cluster_node03_address}
+        - name: ${_param:cluster_node01_hostname}
+          host: ${_param:cluster_node01_address}
+        - name: ${_param:cluster_node02_hostname}
+          host: ${_param:cluster_node02_address}
+        - name: ${_param:cluster_node03_hostname}
+          host: ${_param:cluster_node03_address}
     pools:
       nova:
         nova_keyring: ${_param:nova_storage_keyring}
