@@ -1,0 +1,8 @@
+parameters:
+  _param:
+    ceph_monitor_01_address: 172.16.10.93
+    ceph_monitor_02_address: 172.16.10.91
+    ceph_monitor_03_address: 172.16.10.92
+    cluster_domain: pcizinsky_ceph_lab_3.bud-mk.local
+    infra_config_address: 172.16.10.90
+    infra_config_deploy_address: 192.168.10.90

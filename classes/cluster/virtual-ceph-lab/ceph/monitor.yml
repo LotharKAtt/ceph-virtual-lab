@@ -22,9 +22,7 @@ parameters:
     nova_storage_keyring: novakeyring
     cinder_storage_keyring: cinderkeyrinig
   ceph:
-    monitor:
-      bind:
-        address: ${_param:single_address}
+    common:
       version: kraken
       fsid: a619c5fc-c4ed-4f22-9ed2-66cf2feca23d
       public_network: 10.1.0.0/24
@@ -36,8 +34,26 @@ parameters:
           host: ${_param:cluster_node02_address}
         - name: ${_param:cluster_node03_hostname}
           host: ${_param:cluster_node03_address}
-    pools:
-      nova:
-        nova_keyring: ${_param:nova_storage_keyring}
-      cinder:
-        cinder_keyring: ${_param:cinder_storage_keyring}
+      keyring:
+        admin:
+          key: AQBHPYhZv5mYDBAAvisaSzCTQkC5gywGUp/voA==
+          caps:
+            mds: "allow *"
+            mgr: "allow *"
+            mon: "allow *"
+            osd: "allow *"
+        
+    monitor:
+      enabled: true
+      keyring:
+        mon:
+          key: AQAnQIhZ6in5KxAAdf467upoRMWFcVg5pbh1yg==
+          caps:
+            mon: "allow *"
+        admin:
+          key: AQBHPYhZv5mYDBAAvisaSzCTQkC5gywGUp/voA==
+          caps:
+            mds: "allow *"
+            mgr: "allow *"
+            mon: "allow *"
+            osd: "allow *"
